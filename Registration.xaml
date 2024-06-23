@@ -1,0 +1,49 @@
+﻿<Page x:Class="sushi_darom.Registration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:sushi_darom"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Registration" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="36*"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="1" 
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Width="438">
+            <Image Source="/sushi.png" Stretch="Fill" Canvas.Left="22" Canvas.Top="13"/>
+        </Canvas>
+
+        <StackPanel HorizontalAlignment="Center"
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Vertical" Width="376" >
+
+            <TextBlock Text="Регистрация" FontSize="20" HorizontalAlignment="Center"  Grid.Row="1"/>
+            <TextBlock Text="ФИО" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16"  Width="34" Margin="0,5,0,0"/>
+            <TextBox x:Name="fio" VerticalAlignment="Center" Background="#FEE0D1" Height="18" Margin="0,5,0,0"/>
+            <TextBlock Text="Номер телефона" HorizontalAlignment="Left" VerticalAlignment="Center" Height="15" Width="93" Margin="0,5,0,0"/>
+            <TextBox x:Name="pn" VerticalAlignment="Center" Background="#FEE0D1" Height="18" Margin="0,5,0,0"/>
+            <TextBlock Text="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="41" Margin="0,5,0,0"/>
+            <PasswordBox x:Name="pswrd" VerticalAlignment="Center" Background="#FEE0D1" Margin="0,5,0,0"/>
+            <Button Grid.Column="2" Content="Регистрация" Background="White" Click="Button_Click" Margin="0,10,0,0"/>
+            <TextBlock Grid.Column="2" Text="Вход" VerticalAlignment="Top" FontSize="10" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#ABD1EB" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown2" Height="13" Width="22"/>
+
+        </StackPanel>
+
+
+    </Grid>
+</Page>

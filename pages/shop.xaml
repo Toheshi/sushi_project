@@ -1,0 +1,59 @@
+﻿<Page x:Class="sushi_darom.cs.shop"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:sushi_darom.cs"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="1151"
+      Title="shop" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="809*"/>
+            <ColumnDefinition Width="342*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="cartList" HorizontalContentAlignment="Stretch" BorderThickness="0.1" BorderBrush="Black" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Width="808" Height="428" VerticalAlignment="Top">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+                BorderThickness="0.5" 
+                BorderBrush="Black"
+                Width="781"
+                Height="81">
+                        <Grid Height="190" VerticalAlignment="Top">
+                            <Border BorderBrush="Black" Margin="0,0,698,110" >
+                                <Image Source="{Binding picture}"/>
+                            </Border>
+                            <StackPanel Margin="0,26,0,134" HorizontalAlignment="Right" Width="693">
+                                <TextBlock x:Name="Name" Grid.Column="1" Text="{Binding product_name}" Margin="5,5,0,0" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="591,26,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106">
+                                <TextBlock x:Name="Price" Text="{Binding product_price}" FontSize="12" FontWeight="Bold" Width="72" Height="16"/>
+                                <TextBlock Text="руб." Margin="0,1,0,0" FontSize="12" FontWeight="Bold" Width="26" Height="17"/>
+                            </StackPanel>
+                            <Button Content="Убрать" Margin="702,32,0,140" HorizontalAlignment="Left" Width="68" Click="Button_Click"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Column="1" Margin="29,46,32,166">
+            <TextBlock Text="ФИО" Width="40" Height="17" HorizontalAlignment="Left" Margin="15,50,0,0"/>
+            <TextBox x:Name="customName" HorizontalAlignment="Left" Margin="15,0,0,0" Width="251"/>
+            <TextBlock Text="Адрес" Width="40" Height="17" HorizontalAlignment="Left" Margin="15,5,0,0"/>
+            <TextBox x:Name="addrCust" HorizontalAlignment="Left" Margin="15,0,0,0" Width="251"/>
+            <TextBlock Text="Комментарий к заказу" Width="125" Height="17" HorizontalAlignment="Left" Margin="15,5,0,0"/>
+            <TextBox x:Name="commOrd"  HorizontalAlignment="Left" Margin="15,0,0,0" Width="251" Height="86"/>
+            <Button Content="Оплатить" Background="Orange" Margin="15" Width="251" Click="Button_Click_1"/>
+        </StackPanel>
+
+        <Rectangle Fill="Orange" Margin="804,0,0,0" HorizontalAlignment="Left" Width="10" Grid.ColumnSpan="2"/>
+        <Label Content="Сумма заказа:" HorizontalAlignment="Left" FontSize ="18"  VerticalAlignment="Top" Height="34" Width="129" Margin="548,436,0,0"/>
+        <TextBlock x:Name="sumOrder" HorizontalAlignment="Left" Margin="682,445,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="65" FontSize="14" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="720,445,0,0" TextWrapping="Wrap" Text="руб." VerticalAlignment="Top" Width="29" FontSize="14" FontWeight="Bold"/>
+
+    </Grid>
+</Page>

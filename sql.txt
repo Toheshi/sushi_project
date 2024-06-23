@@ -1,0 +1,94 @@
+-- Создание таблицы Logpass
+CREATE TABLE Logpass (
+	id INT IDENTITY(1,1),
+    phone_number VARCHAR(15) PRIMARY KEY,
+    password_ VARCHAR(255) NOT NULL
+);
+
+-- Создание таблицы Customers
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY IDENTITY(1,1),
+    name_ VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(15),
+    address_ VARCHAR(255),
+    FOREIGN KEY (phone_number) REFERENCES Logpass(phone_number)
+);
+
+-- Пример вставки данных в таблицу Logpass
+INSERT INTO Logpass (phone_number, password_)
+VALUES 
+('admin', '1'),
+('user', '2');
+
+-- Пример вставки данных в таблицу Customers
+INSERT INTO Customers (name_, phone_number, address_)
+VALUES 
+('Антон', 'admin', 'Серпухов'),
+('Олег', 'user', 'Москва');
+
+-- Создание таблицы "Category"
+CREATE TABLE Category
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    name_category VARCHAR(100) NOT NULL
+);
+
+-- Вставка данных в таблицу "Category"
+INSERT INTO Category (name_category)
+VALUES
+    ('Сеты'),
+    ('Роллы'),
+    ('Напитки');
+
+-- Создание таблицы "Products"
+CREATE TABLE Products 
+(
+    id_products INT PRIMARY KEY IDENTITY(1,1),
+    name_ VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description_ VARCHAR(500),
+    picture VARCHAR(300),
+    id_category INT,
+    FOREIGN KEY (id_category) REFERENCES Category(id)
+);
+
+INSERT INTO Products (name_, price, description_, picture, id_category)
+VALUES
+    ('Сет Большой', 1500, '7 ПОРЦИЙ: БЭБИ МАКИ, УНАГИ ФУРАЙ, СУХАРЬ МАКИ,ТАЙ МАКИ,
+ФИЛАДЕЛЬФИЯ С ОГУРЦОМ,ТОКИО, БИГ КАППА С СЫРОМ', 'C:/img/setBig.png', 1),
+    ('Ролл Калифорния', 250, 'РОЛЛ С ТИГРОВОЙ КРЕВЕТКОЙ, ОГУРЦОМ, СЛИВОЧНЫМ СЫРОМ, АВОКАДО. УКРАШЕН ИКРОЙ "МАСАГО"', 'C:/img/rollCalifornia.png', 2),
+	('Кока-кола', 75, 'В АССОРТИМЕНТЕ', 'C:/img/CocaCola.png', 3),
+	('Фанта', 95, 'В АССОРТИМЕНТЕ', 'C:/img/Fanta.png', 3);
+
+SELECT id_products, name_, price, description_, picture FROM Products JOIN Category ON Products.id_category = Category.id WHERE Category.name_category = 'Сеты'
+
+drop table Products
+
+-- Создание таблицы "OrderItems"
+CREATE TABLE OrderItems
+(
+    id_order_item INT PRIMARY KEY IDENTITY(1,1),
+    id_order INT NOT NULL,
+    id_product INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (id_order) REFERENCES Orders(id),
+    FOREIGN KEY (id_product) REFERENCES Products(id_products)
+);
+
+ALTER TABLE Orders
+ADD id_customer INT,
+    FOREIGN KEY (id_customer) REFERENCES customers(id);
+
+CREATE TABLE Orders
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    id_Data VARCHAR(50),
+    number_order VARCHAR(50),
+    status_order VARCHAR(50),
+    time_ VARCHAR(50),
+    id_status_order VARCHAR(50),
+    phone VARCHAR(50),
+    id_customer INT,
+    FOREIGN KEY (id_customer) REFERENCES customers(id)
+);
+

@@ -1,0 +1,94 @@
+﻿<Page x:Class="sushi_darom.cs.orders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:sushi_darom.cs"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="1151"
+      Title="orders" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="431*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="667*"/>
+            <ColumnDefinition Width="484*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="orderList" HorizontalContentAlignment="Stretch" BorderThickness="0.1" BorderBrush="Black" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Width="657" Grid.Row="1" Height="432" VerticalAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+        BorderThickness="0.5" 
+        BorderBrush="Black"
+        Width="644"
+        Height="37">
+                        <Grid Height="190" VerticalAlignment="Top">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,155">
+                                <TextBlock x:Name="ord_id" Grid.Column="1" Text="{Binding order_id}" Margin="5" FontSize="12" Width="17" Height="16"/>
+                                <TextBlock x:Name="c_name" Grid.Column="1" Text="{Binding customer_name}" Margin="5" FontSize="12" Width="70" Height="16"/>
+                                <TextBlock x:Name="ord_date" Text="{Binding order_date}" Margin="5" FontSize="12" Width="58" Height="16"/>
+                                <TextBlock x:Name="ord_stat" Grid.Column="1" Text="{Binding order_status}" Margin="20,0,0,0" FontSize="12" Width="67" Height="16"/>
+                                <TextBlock x:Name="comment" Grid.Column="1" Text="{Binding comment_ord}" Margin="5" FontSize="12" Width="231" Height="16"/>
+                                <Button Content="Открыть" Height="18" Margin="1" Width="47" Click="Button_Click" FontSize="10"/>
+                                <Button Content="Статус" Height="18" Margin="1" Width="41" Click="Button_Click_1" FontSize="10"/>
+                                <Button Content="Удалить" Height="18" Margin="1" Width="44" Click="Button_Click_2" FontSize="10"/>
+                                <!--<TextBlock x:Name="Price" Grid.Column="1" Text="{Binding price}" Margin="0,0,0,0" FontSize="12" FontWeight="Bold" Width="72" Height="28"/>
+                                <TextBlock Text="руб." Margin="0,0,0,0" FontSize="12" FontWeight="Bold" Width="26" Height="17"/>-->
+                            </StackPanel>
+                            <!--<Button Content="Убрать" Margin="712,35,0,136" HorizontalAlignment="Left" Width="68" Click="Button_Click"/>-->
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Rectangle Fill="Orange" Margin="657,0,0,0" HorizontalAlignment="Left" Width="10" Grid.RowSpan="2"/>
+        <TextBlock Text="Список заказов" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Height="20" Width="123" Margin="0,9,0,0" FontSize="16"/>
+        <TextBlock Text="Детали заказа" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1" Height="21" Width="110" Margin="0,9,0,0" FontSize="16"/>
+
+        <StackPanel Margin="8,35,17,426" Orientation="Horizontal" Grid.RowSpan="2">
+            <Label Content="№" Height="25" Width="27" FontSize="10" FontWeight="Bold"/>
+            <Label Content="ФИО клиента" Height="25" Width="81" FontSize="10" FontWeight="Bold"/>
+            <Label Content="Дата заказа" Height="25" Width="68" FontSize="10" FontWeight="Bold"/>
+            <Label Content="Статус заказа" Height="25" Width="75" FontSize="10" FontWeight="Bold"/>
+            <Label Content="Комментарий" Height="25" Width="87" FontSize="10" FontWeight="Bold" Margin="10,0,0,0"/>
+        </StackPanel>
+        
+        <StackPanel Margin="8,35,17,426" Orientation="Horizontal" Grid.Column="1" Grid.RowSpan="2">
+            <Label Content="Позииция" Height="25" Width="60" FontSize="10" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="Дата заказа" Height="25" Width="68" FontSize="10" FontWeight="Bold" Margin="100,0,0,0"/>
+            <Label Content="Адрес" Height="25" Width="40" FontSize="10" FontWeight="Bold" Margin="68,0,0,0"/>
+        </StackPanel>
+        
+        <ListView x:Name="orderDetList" HorizontalContentAlignment="Stretch" BorderThickness="0.1" BorderBrush="Black" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="484">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+BorderThickness="0.5" 
+BorderBrush="Black"
+Width="472"
+Height="37">
+                        <Grid Height="190" VerticalAlignment="Top">
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,150">
+                                <!--<TextBlock x:Name="ord_id" Grid.Column="1" Text="{Binding order_id}" Margin="10,10,0,0" FontSize="12" Width="18"/>-->
+                                <TextBlock x:Name="prod_name" Grid.Column="1" Text="{Binding product_name}" Margin="10,10,0,0" FontSize="12" Width="151"/>
+                                <!--<TextBlock x:Name="prod_price" Grid.Column="1" Text="{Binding product_price}" Margin="10,10,0,0" FontSize="12" Width="73"/>-->
+                                <TextBlock x:Name="ord_date" Text="{Binding order_date}" FontSize="12" Width="129" Height="18" Margin="10,0,0,0"/>
+                                <!--<TextBlock x:Name="ord_stat" Grid.Column="1" Text="{Binding order_status}" Margin="30,10,0,0" FontSize="12" Width="40"/>-->
+                                <TextBlock x:Name="address" Grid.Column="1" Text="{Binding address_}" Margin="5,10,0,0" FontSize="12" Width="247"/>
+                                <Button Content="Открыть" Height="20" Margin="80,10,0,10" Width="92"/>
+                                <!--<TextBlock x:Name="Price" Grid.Column="1" Text="{Binding price}" Margin="0,0,0,0" FontSize="12" FontWeight="Bold" Width="72" Height="28"/>
+                        <TextBlock Text="руб." Margin="0,0,0,0" FontSize="12" FontWeight="Bold" Width="26" Height="17"/>-->
+                            </StackPanel>
+                            <!--<Button Content="Убрать" Margin="712,35,0,136" HorizontalAlignment="Left" Width="68" Click="Button_Click"/>-->
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
